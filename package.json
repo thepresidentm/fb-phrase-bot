@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/thepresidentm/fb-phrase-bot/issues"
   },
-  "homepage": "https://github.com/thepresidentm/fb-phrase-bot#readme"
+  "homepage": "https://github.com/thepresidentm/fb-phrase-bot#readme",
+  "dependencies": {
+    "urllib": "^2.38.1"
+  }
 }
