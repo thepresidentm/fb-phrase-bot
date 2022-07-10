@@ -19,6 +19,7 @@
   "homepage": "https://github.com/thepresidentm/fb-phrase-bot#readme",
   "dependencies": {
     "openai": "^3.0.0",
+    "readline-sync": "^1.4.10",
     "urllib": "^2.38.1"
   }
 }
