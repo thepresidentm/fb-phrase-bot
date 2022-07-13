@@ -22,8 +22,7 @@ function post(mensaje){
 
 async function validarToken(){
     const url = fbUrl + '/feed?' + fbToken;
-    let result = urllib.request(url, { method: 'GET', timeout: 10000 });
-    return result;
+    return urllib.request(url, { method: 'GET', timeout: 10000 });
 }
 
 module.exports = {
