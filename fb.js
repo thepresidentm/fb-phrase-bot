@@ -10,7 +10,7 @@ function post(mensaje){
     mensaje = encodeURIComponent(mensaje);
     url = replacer.rp(url, [mensaje]);
 
-    urllib.request(url, { method: 'POST', timeout: 10000 }).then(function (result){
+    urllib.request(url, { method: 'POST', timeout: 50000 }).then(function (result){
         if(result.status != 200){
             console.log('No se realizo la publicacion: ' + mensaje + '\n');
             console.log(result.data.toString());
