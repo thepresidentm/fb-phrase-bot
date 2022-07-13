@@ -1,22 +1,31 @@
 const fb = require('./fb');
 const ai = require('./gpt3');
+const logger = require('./logger');
 const readlineSync = require('readline-sync');
 
+// Pendientes:
 
-// Falta validar token fb antes de gastar el credito de gpt3, try catchs y logear todas las compelticiones
+// Try y catch
+// Compobar permisos del token
+
+fb.validarToken().then(result =>{
+    result.status != 200 ? fracaso(result) : main();
+});
 
 function main (){
 
-    // Con gpt 3
-    ai.completar().then(function (data){
-        let texto = data.split('#');
-        preguntarFrase(texto);
-    })
+    // // Con gpt 3
+    // ai.completar().then(function (data){
+    //     let texto = data.split('#');
+    //     logger.saveAll(texto);
+    //     preguntarFrase(texto);
+    // })
 
     // Sin gpt3 para no gastar credito
-    // let texto = 'Las acciones siempre te van a demostrar que las palabras no son nada.#Tal vez en otro momento de nuestras u otras vidas volvamos a encontrarnos para hacer lo que no pudimos hacer en esta…#No puedo verme amando a nadie más que a ti, para toda mi vida.#“En las buenas, malas, y en las peores, siempre juntos.”♥️#Sin importar el plan o donde estemos, eres tú quien hace de mis días los más hermosos.';
-    // texto = texto.split('#');
-    // preguntarFrase(texto);
+    let texto = 'Las acciones siempre te van a demostrar que las palabras no son nada.#Tal vez en otro momento de nuestras u otras vidas volvamos a encontrarnos para hacer lo que no pudimos hacer en esta…#No puedo verme amando a nadie más que a ti, para toda mi vida.#“En las buenas, malas, y en las peores, siempre juntos.”♥️#Sin importar el plan o donde estemos, eres tú quien hace de mis días los más hermosos.';
+    texto = texto.split('#');
+    logger.saveAll(texto);
+    preguntarFrase(texto);
 }
 
 function preguntarFrase(array){
@@ -29,6 +38,7 @@ function preguntarFrase(array){
         if(readlineSync.keyInYN('Quieres editar la frase?')){
             seleccionada = editar(seleccionada);
         }
+        logger.saveUsed(seleccionada);
         fb.post(seleccionada);
     }
 
@@ -47,9 +57,6 @@ function editar(original){
         return editar(nueva);
     }
 }
-fb.validarToken().then(result =>{
-    result.status != 200 ? fracaso(result) : main();
-});
 
 function fracaso(input){
     console.log('Fracaso al login de fb');
