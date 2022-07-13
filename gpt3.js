@@ -13,10 +13,9 @@ async function completar() {
         model: "text-davinci-002",
         prompt: prompt,
         temperature: 0.7,
-        max_tokens: 200,
+        max_tokens: 130,
     });
 
-    // console.log(response.data);
     return response.data.choices[0].text;
 }
 
