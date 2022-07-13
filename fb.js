@@ -12,13 +12,21 @@ function post(mensaje){
 
     urllib.request(url, { method: 'POST', timeout: 10000 }).then(function (result){
         if(result.status != 200){
-            console.log('No se realizo la publicacion');
+            console.log('No se realizo la publicacion: ' + mensaje + '\n');
             console.log(result.data.toString());
         }else{
-            console.log("Publicacion exitosa");
+            console.log('Publicacion exitosa: ' + mensaje + '\n');
         }
     });
 }
+
+async function validarToken(){
+    const url = fbUrl + '/feed?' + fbToken;
+    let result = urllib.request(url, { method: 'GET', timeout: 10000 });
+    return result;
+}
+
 module.exports = {
-    post
+    post,
+    validarToken
 }
