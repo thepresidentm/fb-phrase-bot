@@ -5,11 +5,7 @@ module.exports = {
         let result = '';
         string = string.split(delimiter);
         for(var i = 0; i < string.length; i++){
-            if(i != string.length - 1){
-                result += string[i] + content[i];
-            }else{
-                result += string[i];
-            }
+            result += string[i] + (i != string.length - 1 ? content[i] : '');
         }
         return result;
     }

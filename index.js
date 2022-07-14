@@ -14,14 +14,14 @@ fb.validarToken().then(result =>{
 
 function main (){
 
-    // // Con gpt 3
-    ai.completar().then(function (data){
+    // Con gpt 3
+    ai.completar().then((data) => {
         let texto = data.split('#');
         logger.saveAll(texto);
         preguntarFrase(texto);
     })
 
-    // // Sin gpt3 para no gastar credito
+    // Sin gpt3 para no gastar credito
     // let texto = 'Las acciones siempre te van a demostrar que las palabras no son nada.#Tal vez en otro momento de nuestras u otras vidas volvamos a encontrarnos para hacer lo que no pudimos hacer en esta…#No puedo verme amando a nadie más que a ti, para toda mi vida.#“En las buenas, malas, y en las peores, siempre juntos.”♥️#Sin importar el plan o donde estemos, eres tú quien hace de mis días los más hermosos.';
     // texto = texto.split('#');
     // logger.saveAll(texto);
@@ -51,11 +51,7 @@ function editar(original){
     console.log(original);
     let nueva = readlineSync.prompt({ defaultInput: original })
     console.log(nueva)
-    if(readlineSync.keyInYN('Estas seguro?')){
-        return nueva;
-    }else{
-        return editar(nueva);
-    }
+    return (readlineSync.keyInYN('Estas seguro?') ? nueva : editar(nueva));
 }
 
 function fracaso(input){
